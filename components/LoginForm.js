@@ -1,24 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
-  Poppins_100Thin,
-  Poppins_100Thin_Italic,
-  Poppins_200ExtraLight,
-  Poppins_200ExtraLight_Italic,
   Poppins_300Light,
-  Poppins_300Light_Italic,
   Poppins_400Regular,
-  Poppins_400Regular_Italic,
   Poppins_500Medium,
-  Poppins_500Medium_Italic,
-  Poppins_600SemiBold,
-  Poppins_600SemiBold_Italic,
-  Poppins_700Bold,
-  Poppins_700Bold_Italic,
-  Poppins_800ExtraBold,
-  Poppins_800ExtraBold_Italic,
-  Poppins_900Black,
-  Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
 import { useFonts } from "expo-font";
 import { TextInput, TouchableOpacity } from "react-native-web";
@@ -27,26 +12,12 @@ import { CheckBox } from "react-native-web";
 
 const LoginFrom = () => {
 
+  const 
 
   const [fonts, error] = useFonts({
-    Poppins_100Thin,
-    Poppins_100Thin_Italic,
-    Poppins_200ExtraLight,
-    Poppins_200ExtraLight_Italic,
-    Poppins_300Light,
-    Poppins_300Light_Italic,
-    Poppins_400Regular,
-    Poppins_400Regular_Italic,
-    Poppins_500Medium,
-    Poppins_500Medium_Italic,
-    Poppins_600SemiBold,
-    Poppins_600SemiBold_Italic,
-    Poppins_700Bold,
-    Poppins_700Bold_Italic,
-    Poppins_800ExtraBold,
-    Poppins_800ExtraBold_Italic,
-    Poppins_900Black,
-    Poppins_900Black_Italic,
+    light: Poppins_300Light,
+    regular: Poppins_400Regular,
+    bold: Poppins_500Medium,
   });
 
   // if (!fonts) {
@@ -67,7 +38,7 @@ const LoginFrom = () => {
           style={styles.inputField}
           autoCorrect={false}
           autoCapitalize={"none"}
-         />
+        />
 
         <Text style={styles.inputLabel}>Enter your name</Text>
         <TextInput
@@ -102,7 +73,8 @@ const LoginFrom = () => {
             styles.buttonStyle,
             { backgroundColor: agree ? "purple" : "grey" },
           ]}
-          disabled={!agree}
+          onPress={()=> submit()}
+          disabled={!agree} 
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
@@ -123,14 +95,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: "40px",
     fontWeight: "800",
-    fontFamily: "Poppins_500Medium",
+    fontFamily: "bold",
     // backgroundColor: "wheat",
     borderRadius: "10px",
     marginVertical: "20px",
   },
   description: {
     fontSize: "22px",
-    fontFamily: "Poppins_300Light",
+    fontFamily: "light",
     marginTop: "20px",
     color: "grey",
   },
@@ -145,7 +117,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: "20px",
     fontWeight: "400",
-    fontFamily: "Poppins_500Medium",
+    fontFamily: "bold",
     textTransform: "capitalize",
     marginVertical: "10px",
   },
@@ -156,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: "5px",
     backgroundColor: "lightgrey",
     fontSize: "20px",
-    fontFamily: "Poppins_400Regular",
+    fontFamily: "regular",
     paddingHorizontal: "10px",
     paddingVertical: "5px",
   },
@@ -165,7 +137,7 @@ const styles = StyleSheet.create({
     bottom: "22px",
     left: "30px",
     fontSize: "20px",
-    fontFamily: "Poppins_500Medium",
+    fontFamily: "bold",
   },
   buttonStyle: {
     textAlign: "center",
@@ -177,6 +149,7 @@ const styles = StyleSheet.create({
     fontSize: "32px",
     color: "white",
     fontWeight: "500",
+    fontFamily: "bold",
   },
 });
 
