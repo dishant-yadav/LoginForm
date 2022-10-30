@@ -1,18 +1,42 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Easing,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+  CheckBox,
+  Alert,
+} from "react-native";
 import {
   Poppins_300Light,
   Poppins_400Regular,
   Poppins_500Medium,
 } from "@expo-google-fonts/poppins";
 import { useFonts } from "expo-font";
-import { TextInput, TouchableOpacity } from "react-native-web";
-import { CheckBox } from "react-native-web";
-// import AppLoading from "expo-app-loading";
+import AppLoading from "expo-app-loading";
 
-const LoginFrom = () => {
+const LoginFrom = ({ navigation }) => {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [agree, setAgree] = useState(false);
 
-  const 
+  const submit = () => {
+    if (
+      email === "mail@google.com" &&
+      userName === "Dishant" &&
+      password === "PASSWORD"
+    ) {
+      Alert.alert("Logged in successfully");
+      console.log("Logged In");
+      navigation.navigate("Home", { userName: `${userName}` });
+    } else {
+      Alert.alert("Invalid Username or Password");
+      console.log("Invalid Username or Password");
+    }
+  };
 
   const [fonts, error] = useFonts({
     light: Poppins_300Light,
@@ -20,11 +44,9 @@ const LoginFrom = () => {
     bold: Poppins_500Medium,
   });
 
-  // if (!fonts) {
-  //   return <AppLoading />;
-  // }
-
-  const [agree, setAgree] = useState(false);
+  if (!fonts) {
+    return <AppLoading />;
+  }
 
   return (
     <View style={styles.container}>
@@ -38,6 +60,8 @@ const LoginFrom = () => {
           style={styles.inputField}
           autoCorrect={false}
           autoCapitalize={"none"}
+          onChangeText={(email) => setEmail(email)}
+          value={email}
         />
 
         <Text style={styles.inputLabel}>Enter your name</Text>
@@ -45,6 +69,8 @@ const LoginFrom = () => {
           style={styles.inputField}
           autoCorrect={false}
           autoCapitalize={"none"}
+          value={userName}
+          onChangeText={(userName) => setUserName(userName)}
         />
 
         <Text style={styles.inputLabel}>Enter your password</Text>
@@ -53,6 +79,8 @@ const LoginFrom = () => {
           autoCorrect={false}
           autoCapitalize={"none"}
           secureTextEntry={true}
+          value={password}
+          onChangeText={(password) => setPassword(password)}
         />
 
         <View style={styles.inputContainerCheckbox}>
@@ -73,8 +101,8 @@ const LoginFrom = () => {
             styles.buttonStyle,
             { backgroundColor: agree ? "purple" : "grey" },
           ]}
-          onPress={()=> submit()}
-          disabled={!agree} 
+          onPress={() => submit()}
+          disabled={!agree}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
@@ -87,66 +115,66 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    paddingHorizontal: "30px",
-    paddingTop: "20px",
+    paddingHorizontal: 30,
+    paddingTop: 20,
     backgroundColor: "wheat",
   },
   header: {
     textAlign: "center",
-    fontSize: "40px",
+    fontSize: 40,
     fontWeight: "800",
     fontFamily: "bold",
     // backgroundColor: "wheat",
-    borderRadius: "10px",
-    marginVertical: "20px",
+    borderRadius: 10,
+    marginVertical: 20,
   },
   description: {
-    fontSize: "22px",
+    fontSize: 22,
     fontFamily: "light",
-    marginTop: "20px",
+    marginTop: 20,
     color: "grey",
   },
   inputContainer: {
-    marginVertical: "40px",
-    paddingVertical: "20px",
+    marginVertical: 40,
+    paddingVertical: 20,
   },
   inputContainerCheckbox: {
-    marginVertical: "10px",
-    paddingVertical: "20px",
+    marginVertical: 10,
+    paddingVertical: 20,
   },
   inputLabel: {
-    fontSize: "20px",
+    fontSize: 20,
     fontWeight: "400",
     fontFamily: "bold",
     textTransform: "capitalize",
-    marginVertical: "10px",
+    marginVertical: 10,
   },
   inputField: {
-    height: "50px",
-    borderWidth: "2px",
+    height: 50,
+    borderWidth: 2,
     borderColor: "grey",
-    borderRadius: "5px",
+    borderRadius: 5,
     backgroundColor: "lightgrey",
-    fontSize: "20px",
+    fontSize: 20,
     fontFamily: "regular",
-    paddingHorizontal: "10px",
-    paddingVertical: "5px",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
   checkboxText: {
     position: "relative",
-    bottom: "22px",
-    left: "30px",
-    fontSize: "20px",
+    bottom: 22,
+    left: 30,
+    fontSize: 20,
     fontFamily: "bold",
   },
   buttonStyle: {
     textAlign: "center",
-    padding: "10px",
-    borderRadius: "20px",
+    padding: 10,
+    borderRadius: 20,
     backgroundColor: "purple",
   },
   buttonText: {
-    fontSize: "32px",
+    fontSize: 32,
     color: "white",
     fontWeight: "500",
     fontFamily: "bold",
